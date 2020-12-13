@@ -1,6 +1,23 @@
 import {Router} from 'express';
-import Book from '../models/Book.js';
 import toResponse from "../utils/toResponse.js";
+import mongoose from "mongoose";
+import Book from '../models/Book.js';
+import User from "../models/User.js";
+import Comment from "../models/Comment.js";
+
+const ObjectId = mongoose.Types.ObjectId;
+
+function commentToResponse (comment, user) {
+    const response = {
+        ...toResponse(comment),
+        user: {
+            nick: user.nick,
+            email: user.email,
+        }
+    }
+    delete response.book;
+    return response;
+}
 
 function getRoutes() {
     const routes = Router();
@@ -16,6 +33,9 @@ function getRoutes() {
     });
 
     routes.get("/books/:id", async (req, res, next) => {
+        if (!ObjectId.isValid(req.params.id)) {
+            return res.status(404).send('Not found!');
+        }
         const book = await Book.findById(req.params.id).exec();
         if (!book) {
             return res.status(404).send('Not found!');
@@ -24,17 +44,38 @@ function getRoutes() {
     });
 
     routes.post("/books/:id/comments", async (req, res, next) => {
+        const user = await User.findOne({nick: req.body.nick}).exec();
+        if (!user || !ObjectId.isValid(req.params.id)) {
+            return res.status(404).send('Not found!');
+        }
         const book = await Book.findById(req.params.id).exec();
         if (!book) {
             return res.status(404).send('Not found!');
         }
-        //const comment = await new Comment({}).save();
+        const comment = await new Comment({
+            user,
+            comment: req.body.comment,
+            score: req.body.score,
+            book,
+        }).save();
 
-        return res.json(toResponse(book));
+        return res.json(commentToResponse(comment, user));
     });
 
     routes.delete("/books/:bookId/comments/:commentId", async (req, res, next) => {
-
+        if (!ObjectId.isValid(req.params.bookId) || !ObjectId.isValid(req.params.commentId)) {
+            return res.status(404).send('Not found!');
+        }
+        const book = await Book.findById(req.params.bookId).exec();
+        if (!book) {
+            return res.status(404).send('Not found!');
+        }
+        const comment = await Comment.findByIdAndDelete(req.params.commentId).exec();
+        if (!comment) {
+            return res.status(404).send('Not found!');
+        }
+        const user = await User.findById(comment.user).exec();
+        return res.json(commentToResponse(comment, user));
     });
 
     return routes;
