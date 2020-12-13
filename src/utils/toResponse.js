@@ -34,31 +34,8 @@ function commentsToResponseUser(comments) {
     });
 }
 
-function commentsToResponseBook(comments) {
-    return comments.map(comment => {
-        const response = {
-            ...toResponse(comment)
-        }
-        delete response.user;
-        delete response.book;
-        return response;
-    });
-}
-
-function booksToResponse(books) {
-    return books.map(book => {
-        const response = toResponse(book);
-        return {
-            id: response.id,
-            title: response.title
-        };
-    });
-}
-
 export {
     toResponse,
     commentToResponse,
-    commentsToResponseUser,
-    commentsToResponseBook,
-    booksToResponse
+    commentsToResponseUser
 };
