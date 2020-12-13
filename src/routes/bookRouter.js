@@ -1,23 +1,11 @@
 import {Router} from 'express';
-import toResponse from "../utils/toResponse.js";
+import {toResponse, commentToResponse} from "../utils/toResponse.js";
 import mongoose from "mongoose";
 import Book from '../models/Book.js';
 import User from "../models/User.js";
 import Comment from "../models/Comment.js";
 
 const ObjectId = mongoose.Types.ObjectId;
-
-function commentToResponse (comment, user) {
-    const response = {
-        ...toResponse(comment),
-        user: {
-            nick: user.nick,
-            email: user.email,
-        }
-    }
-    delete response.book;
-    return response;
-}
 
 function getRoutes() {
     const routes = Router();

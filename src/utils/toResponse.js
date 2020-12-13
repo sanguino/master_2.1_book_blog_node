@@ -10,4 +10,16 @@ function toResponse(document) {
     }
 }
 
-export default toResponse;
+function commentToResponse (comment, user) {
+    const response = {
+        ...toResponse(comment),
+        user: {
+            nick: user.nick,
+            email: user.email,
+        }
+    }
+    delete response.book;
+    return response;
+}
+
+export {toResponse, commentToResponse};
