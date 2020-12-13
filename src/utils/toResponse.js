@@ -10,7 +10,7 @@ function toResponse(document) {
     }
 }
 
-function commentToResponse (comment, user) {
+function commentToResponse(comment, user) {
     const response = {
         ...toResponse(comment),
         user: {
@@ -22,7 +22,7 @@ function commentToResponse (comment, user) {
     return response;
 }
 
-function commentsToResponse (comments, user) {
+function commentsToResponseUser(comments) {
     return comments.map(comment => {
         const response = {
             bookId: comment.book._id,
@@ -34,4 +34,31 @@ function commentsToResponse (comments, user) {
     });
 }
 
-export {toResponse, commentToResponse, commentsToResponse};
+function commentsToResponseBook(comments) {
+    return comments.map(comment => {
+        const response = {
+            ...toResponse(comment)
+        }
+        delete response.user;
+        delete response.book;
+        return response;
+    });
+}
+
+function booksToResponse(books) {
+    return books.map(book => {
+        const response = toResponse(book);
+        return {
+            id: response.id,
+            title: response.title
+        };
+    });
+}
+
+export {
+    toResponse,
+    commentToResponse,
+    commentsToResponseUser,
+    commentsToResponseBook,
+    booksToResponse
+};

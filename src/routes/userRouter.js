@@ -1,7 +1,7 @@
 import {Router} from 'express';
 import User from '../models/User.js';
 import Comment from '../models/Comment.js';
-import {toResponse, commentsToResponse} from "../utils/toResponse.js";
+import {toResponse, commentsToResponseUser} from "../utils/toResponse.js";
 
 function getRoutes() {
     const routes = Router();
@@ -32,7 +32,7 @@ function getRoutes() {
         if (!comments.length) {
             return res.status(404).send('Not found!');
         }
-        return res.json(commentsToResponse(comments, user));
+        return res.json(commentsToResponseUser(comments));
     });
 
     routes.patch("/users/:nick", async (req, res, next) => {

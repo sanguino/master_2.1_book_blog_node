@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import {toResponse, commentToResponse} from "../utils/toResponse.js";
+import {toResponse, booksToResponse, commentToResponse, commentsToResponseBook} from "../utils/toResponse.js";
 import mongoose from "mongoose";
 import Book from '../models/Book.js';
 import User from "../models/User.js";
@@ -12,7 +12,7 @@ function getRoutes() {
 
     routes.get("/books", async (req, res, next) => {
         const books = await Book.find({}).exec();
-        res.json(toResponse(books));
+        res.json(booksToResponse(books));
     });
 
     routes.post("/books", async (req, res, next) => {
@@ -28,7 +28,10 @@ function getRoutes() {
         if (!book) {
             return res.status(404).send('Not found!');
         }
-        return res.json(toResponse(book));
+        const comments = await Comment.find({book}).exec();
+        const response = toResponse(book);
+        response.comments = commentsToResponseBook(comments);
+        return res.json(response);
     });
 
     routes.post("/books/:id/comments", async (req, res, next) => {
