@@ -1,7 +1,5 @@
 import {Router} from 'express';
 import Book from '../models/Book.js';
-import User from '../models/User.js';
-import Comment from '../models/Comment.js';
 import toResponse from "../utils/toResponse.js";
 
 function getRoutes() {

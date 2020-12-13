@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+
 const {model, Schema} = mongoose;
 
 const Book = model('Book', new Schema({
@@ -7,7 +8,7 @@ const Book = model('Book', new Schema({
     author: String,
     editorial: String,
     publishedYear: Number,
-    comments:  [{type: Schema.ObjectId, ref: 'Comment'}]
+    comments: [{type: Schema.ObjectId, ref: 'Comment'}]
 }));
 
 

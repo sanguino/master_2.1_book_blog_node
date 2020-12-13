@@ -1,6 +1,5 @@
 import {Router} from 'express';
 import User from '../models/User.js';
-import Comment from '../models/Comment.js';
 import toResponse from "../utils/toResponse.js";
 
 function getRoutes() {
@@ -30,9 +29,9 @@ function getRoutes() {
     routes.patch("/users/:nick", async (req, res, next) => {
         const user = await User.findOneAndUpdate(
             {nick: req.params.nick},
-            {email:req.body.email},
+            {email: req.body.email},
             {new: true}
-            ).exec();
+        ).exec();
         if (!user) {
             return res.status(404).send('Not found!');
         }
