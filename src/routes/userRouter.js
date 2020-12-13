@@ -1,6 +1,7 @@
 import {Router} from 'express';
 import User from '../models/User.js';
-import toResponse from "../utils/toResponse.js";
+import Comment from '../models/Comment.js';
+import {toResponse, commentsToResponse} from "../utils/toResponse.js";
 
 function getRoutes() {
     const routes = Router();
@@ -23,7 +24,15 @@ function getRoutes() {
     });
 
     routes.get("/users/:nick/comments", async (req, res, next) => {
-
+        const user = await User.findOne({nick: req.params.nick}).exec();
+        if (!user) {
+            return res.status(404).send('Not found!');
+        }
+        const comments = await Comment.find({user}).exec();
+        if (!comments.length) {
+            return res.status(404).send('Not found!');
+        }
+        return res.json(commentsToResponse(comments, user));
     });
 
     routes.patch("/users/:nick", async (req, res, next) => {

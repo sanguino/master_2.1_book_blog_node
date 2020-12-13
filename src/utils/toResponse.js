@@ -22,4 +22,16 @@ function commentToResponse (comment, user) {
     return response;
 }
 
-export {toResponse, commentToResponse};
+function commentsToResponse (comments, user) {
+    return comments.map(comment => {
+        const response = {
+            bookId: comment.book._id,
+            ...toResponse(comment)
+        }
+        delete response.user;
+        delete response.book;
+        return response;
+    });
+}
+
+export {toResponse, commentToResponse, commentsToResponse};
