@@ -29,9 +29,6 @@ function getRoutes() {
             return res.status(404).send('Not found!');
         }
         const comments = await Comment.find({user}).exec();
-        if (!comments.length) {
-            return res.status(404).send('Not found!');
-        }
         return res.json(commentsToResponseUser(comments));
     });
 
