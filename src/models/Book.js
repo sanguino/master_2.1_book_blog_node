@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import {defaultSchemaToJson} from "../validators/validators.js";
 
 const {model, Schema} = mongoose;
 
@@ -11,15 +12,8 @@ const bookSchema = new Schema({
     comments: [{type: Schema.ObjectId, ref: 'Comment'}]
 });
 
-bookSchema.set('toJSON', {
-    virtuals: true,
-    versionKey: false,
-    transform: function (doc, ret) {
-        delete ret._id
-    }
-});
+bookSchema.set('toJSON', defaultSchemaToJson);
 
 const Book = model('Book', bookSchema);
-
 
 export default Book;
