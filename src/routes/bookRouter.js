@@ -1,5 +1,4 @@
 import {Router} from 'express';
-import {commentToResponse, toResponse} from "../utils/toResponse.js";
 import mongoose from "mongoose";
 import Book from '../models/Book.js';
 import User from "../models/User.js";
@@ -12,12 +11,12 @@ function getRoutes() {
 
     routes.get("/books", async (req, res) => {
         const books = await Book.find({}).select('_id title').exec();
-        res.json(toResponse(books));
+        return res.json(books);
     });
 
     routes.post("/books", async (req, res) => {
         const book = await new Book(req.body).save();
-        res.json(toResponse(book));
+        return res.json(book);
     });
 
     routes.get("/books/:id", async (req, res) => {
@@ -26,13 +25,13 @@ function getRoutes() {
         }
         const [book, comments] = await Promise.all([
             Book.findById(req.params.id).exec(),
-            Comment.find({book: {_id: req.params.id}}).select({book: 0, user: 0}).exec()
+            Comment.find({bookId: req.params.id}).select({bookId: 0, user: 0}).exec()
         ]);
         if (!book) {
             return res.status(404).send('Not found!');
         }
-        const response = toResponse(book);
-        response.comments = toResponse(comments);
+        const response = book;
+        response.comments = comments;
         return res.json(response);
     });
 
@@ -41,7 +40,7 @@ function getRoutes() {
         if (!user || !ObjectId.isValid(req.params.id)) {
             return res.status(404).send('Not found!');
         }
-        const book = await Book.findById(req.params.id).exec();
+        const book = await Book.exists({_id: req.params.id});
         if (!book) {
             return res.status(404).send('Not found!');
         }
@@ -49,10 +48,11 @@ function getRoutes() {
             user,
             comment: req.body.comment,
             score: req.body.score,
-            book,
+            bookId: req.params.id,
         }).save();
 
-        return res.json(commentToResponse(comment, user));
+        await comment.populate('user');
+        return res.json(comment);
     });
 
     routes.delete("/books/:bookId/comments/:commentId", async (req, res) => {
@@ -67,9 +67,9 @@ function getRoutes() {
         if (!book || !comment) {
             return res.status(404).send('Not found!');
         }
-        const user = await User.findById(comment.user).exec();
-        comment.delete();
-        return res.json(commentToResponse(comment, user));
+        await comment.delete({fields:{bookId:0}});
+        await comment.populate('user');
+        return res.json(comment);
     });
 
     return routes;

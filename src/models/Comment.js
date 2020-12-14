@@ -2,12 +2,22 @@ import mongoose from 'mongoose';
 
 const {model, Schema} = mongoose;
 
-const Comment = model('Comment', new Schema({
+const commentSchema = new Schema({
     user: {type: Schema.ObjectId, ref: 'User', required: true},
     comment: String,
     score: Number,
-    book: {type: Schema.ObjectId, ref: 'Book', required: true}
-}));
+    bookId: {type: Schema.ObjectId, ref: 'Book', required: true}
+});
+
+commentSchema.set('toJSON', {
+    virtuals: true,
+    versionKey: false,
+    transform: function (doc, ret) {
+        delete ret._id
+    }
+});
+
+const Comment = model('Comment', commentSchema);
 
 
 export default Comment;
