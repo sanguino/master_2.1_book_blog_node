@@ -36,12 +36,15 @@ function getRoutes() {
     });
 
     routes.post("/books/:id/comments", async (req, res) => {
-        const user = await User.findOne({nick: req.body.nick}).exec();
-        if (!user || !ObjectId.isValid(req.params.id)) {
+        if (!ObjectId.isValid(req.params.id)) {
             return res.status(404).send('Not found!');
         }
-        const book = await Book.exists({_id: req.params.id});
-        if (!book) {
+        const [user, book] = await Promise.all([
+            User.findOne({nick: req.body.nick}).exec(),
+            Book.exists({_id: req.params.id})
+        ]);
+
+        if (!user || !book) {
             return res.status(404).send('Not found!');
         }
         const comment = await new Comment({
@@ -67,7 +70,7 @@ function getRoutes() {
         if (!book || !comment) {
             return res.status(404).send('Not found!');
         }
-        await comment.delete({fields:{bookId:0}});
+        await comment.delete({fields: {bookId: 0}});
         await comment.populate('user');
         return res.json(comment);
     });
