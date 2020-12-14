@@ -13,8 +13,10 @@ export function isValidObjectId(id) {
 
 export const defaultSchemaToJson = {
     virtuals: true,
-    versionKey:false,
+    versionKey: false,
     transform: function (doc, ret) {
-        delete ret._id
+        if (ret._id) {
+            delete ret._id;
+        }
     }
 };

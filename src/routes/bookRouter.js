@@ -18,22 +18,21 @@ function getRoutes() {
     });
 
     routes.get("/books/:id", [isValidObjectId('id')], async (req, res) => {
-        const [book, comments] = await Promise.all([
-            Book.findById(req.params.id).exec(),
-            Comment.find({bookId: req.params.id}).select({bookId: 0, user: 0}).exec()
-        ]);
+        const book = await Book.findById(req.params.id).populate({
+            path: 'comments',
+            select: {bookId: 0},
+            populate: {path: 'user'}
+        }).exec();
         if (!book) {
             return res.status(404).send('Not found!');
         }
-        const response = book;
-        response.comments = comments;
-        return res.json(response);
+        return res.json(book);
     });
 
     routes.post("/books/:id/comments", [isValidObjectId('id')], async (req, res) => {
         const [user, book] = await Promise.all([
-            User.findOne({nick: req.body.nick}).exec(),
-            Book.exists({_id: req.params.id})
+            User.findOne({nick: req.body.nick}),
+            Book.findOne({_id: req.params.id})
         ]);
 
         if (!user || !book) {
@@ -45,6 +44,9 @@ function getRoutes() {
             score: req.body.score,
             bookId: req.params.id,
         }).save();
+
+        book.comments.push(comment);
+        await book.save();
 
         await comment.populate('user');
         return res.json(comment);
