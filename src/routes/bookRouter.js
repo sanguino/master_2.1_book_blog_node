@@ -1,10 +1,8 @@
 import {Router} from 'express';
-import mongoose from "mongoose";
 import Book from '../models/Book.js';
 import User from "../models/User.js";
 import Comment from "../models/Comment.js";
-
-const ObjectId = mongoose.Types.ObjectId;
+import {isValidObjectId} from "../validators/validators.js"
 
 function getRoutes() {
     const routes = Router();
@@ -19,10 +17,7 @@ function getRoutes() {
         return res.json(book);
     });
 
-    routes.get("/books/:id", async (req, res) => {
-        if (!ObjectId.isValid(req.params.id)) {
-            return res.status(404).send('Not found!');
-        }
+    routes.get("/books/:id", [isValidObjectId('id')], async (req, res) => {
         const [book, comments] = await Promise.all([
             Book.findById(req.params.id).exec(),
             Comment.find({bookId: req.params.id}).select({bookId: 0, user: 0}).exec()
@@ -35,10 +30,7 @@ function getRoutes() {
         return res.json(response);
     });
 
-    routes.post("/books/:id/comments", async (req, res) => {
-        if (!ObjectId.isValid(req.params.id)) {
-            return res.status(404).send('Not found!');
-        }
+    routes.post("/books/:id/comments", [isValidObjectId('id')], async (req, res) => {
         const [user, book] = await Promise.all([
             User.findOne({nick: req.body.nick}).exec(),
             Book.exists({_id: req.params.id})
@@ -58,10 +50,7 @@ function getRoutes() {
         return res.json(comment);
     });
 
-    routes.delete("/books/:bookId/comments/:commentId", async (req, res) => {
-        if (!ObjectId.isValid(req.params.bookId) || !ObjectId.isValid(req.params.commentId)) {
-            return res.status(404).send('Not found!');
-        }
+    routes.delete("/books/:bookId/comments/:commentId", [isValidObjectId('bookId')], async (req, res) => {
         const comment = await Comment.findOne({_id: req.params.commentId, bookId: req.params.bookId}).exec();
 
         if (!comment) {
