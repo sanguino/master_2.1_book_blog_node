@@ -62,12 +62,9 @@ function getRoutes() {
         if (!ObjectId.isValid(req.params.bookId) || !ObjectId.isValid(req.params.commentId)) {
             return res.status(404).send('Not found!');
         }
-        const [book, comment] = await Promise.all([
-            Book.findById(req.params.bookId).exec(),
-            Comment.findById(req.params.commentId).exec()
-        ]);
+        const comment = await Comment.findOne({_id: req.params.commentId, bookId: req.params.bookId}).exec();
 
-        if (!book || !comment) {
+        if (!comment) {
             return res.status(404).send('Not found!');
         }
         await comment.delete({fields: {bookId: 0}});
