@@ -1875,6 +1875,44 @@
 							"response": []
 						},
 						{
+							"name": "delte comment 2 of book2 ko",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b73f8e98-9a83-48c7-9995-d05b7007faf5",
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/rest/books/{{book1Id}}/comments/{{comment1Id}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"rest",
+										"books",
+										"{{book1Id}}",
+										"comments",
+										"{{comment1Id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "delte comment 2",
 							"event": [
 								{
@@ -2004,32 +2042,32 @@
 	],
 	"variable": [
 		{
-			"id": "f7ce8e06-3c43-45c4-80c0-d07eab01ba52",
+			"id": "e6e239cc-208e-4d5b-a053-8812e619b3f9",
 			"key": "bookId",
 			"value": ""
 		},
 		{
-			"id": "903158ff-17e4-4624-b155-aa9059a11575",
+			"id": "2be0b535-c3fc-48d7-a2c3-bab9c3217226",
 			"key": "comment1Id",
 			"value": ""
 		},
 		{
-			"id": "32e38e4b-1442-44ac-a096-5645e1388b77",
+			"id": "b16307a7-f12f-4bfe-8bea-af358689c46c",
 			"key": "comment2Id",
 			"value": ""
 		},
 		{
-			"id": "27b39fc3-6dac-4d3e-a18e-55913c6ad8b0",
+			"id": "da6ed0b5-8eee-46c5-8b52-4ef82049f77e",
 			"key": "book1Id",
 			"value": ""
 		},
 		{
-			"id": "fe8b43a0-518e-4ebd-a362-1db0e6f19ff1",
+			"id": "33e05c34-5590-45b1-ab4a-5318c244398f",
 			"key": "book2Id",
 			"value": ""
 		},
 		{
-			"id": "b8ff7836-6224-4485-b1b8-bda46c67fe7f",
+			"id": "449d6284-dd74-42df-98cd-3f7949a85b24",
 			"key": "commentId",
 			"value": ""
 		}
