@@ -14,5 +14,7 @@ $ ./startMongo.sh
 #### exec
 
 ```bash
+$ npm i
+
 $ npm start
 ```

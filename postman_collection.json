@@ -15,7 +15,9 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									""
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -55,6 +57,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
 									"pm.collectionVariables.set(\"token\", postman.getResponseHeader(\"Authorization\"));",
 									""
 								],
@@ -95,7 +101,9 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									""
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -133,7 +141,9 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									""
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -174,51 +184,17 @@
 					"response": []
 				},
 				{
-					"name": "remove user",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "https://localhost:8443/rest/users/usuario",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"rest",
-								"users",
-								"usuario"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "create book",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									""
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.collectionVariables.set(\"bookId\", pm.response.json().id);"
 								],
 								"type": "text/javascript"
 							}
@@ -264,7 +240,9 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									""
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -301,7 +279,9 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									""
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -317,7 +297,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://localhost:8443/rest/books/1",
+							"raw": "https://localhost:8443/rest/books/{{bookId}}",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -326,53 +306,7 @@
 							"path": [
 								"rest",
 								"books",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete book",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"check book id and comments length\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.id).to.eql(1);",
-									"});",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "{{token}}"
-							}
-						],
-						"url": {
-							"raw": "https://localhost:8443/rest/books/1",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"rest",
-								"books",
-								"1"
+								"{{bookId}}"
 							]
 						}
 					},
@@ -385,7 +319,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									""
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.collectionVariables.set(\"commentId\", pm.response.json().id);"
 								],
 								"type": "text/javascript"
 							}
@@ -410,7 +348,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8443/rest/books/1/comments",
+							"raw": "https://localhost:8443/rest/books/{{bookId}}/comments",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -419,7 +357,7 @@
 							"path": [
 								"rest",
 								"books",
-								"1",
+								"{{bookId}}",
 								"comments"
 							]
 						}
@@ -433,7 +371,9 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									""
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -466,12 +406,15 @@
 					"response": []
 				},
 				{
-					"name": "remove comment",
+					"name": "delete comment",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
 									""
 								],
 								"type": "text/javascript"
@@ -488,7 +431,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://localhost:8443/rest/books/1/comments/1",
+							"raw": "https://localhost:8443/rest/books/{{bookId}}/comments/{{commentId}}",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -497,9 +440,89 @@
 							"path": [
 								"rest",
 								"books",
-								"1",
+								"{{bookId}}",
 								"comments",
-								"1"
+								"{{commentId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{token}}"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:8443/rest/books/{{bookId}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"rest",
+								"books",
+								"{{bookId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:8443/rest/users/usuario",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"rest",
+								"users",
+								"usuario"
 							]
 						}
 					},
@@ -2729,7 +2752,7 @@
 							"response": []
 						},
 						{
-							"name": "delte comment 1",
+							"name": "delete comment 1",
 							"event": [
 								{
 									"listen": "test",
@@ -2823,7 +2846,7 @@
 							"response": []
 						},
 						{
-							"name": "delte comment 2 of book2 ko",
+							"name": "delete comment 2 of book2 ko",
 							"event": [
 								{
 									"listen": "test",
@@ -2866,7 +2889,7 @@
 							"response": []
 						},
 						{
-							"name": "delte comment 2",
+							"name": "delete comment 2",
 							"event": [
 								{
 									"listen": "test",
