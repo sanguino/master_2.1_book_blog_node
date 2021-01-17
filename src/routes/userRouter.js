@@ -1,7 +1,7 @@
 import {Router} from 'express';
 import User from '../models/User.js';
 import Comment from '../models/Comment.js';
-import {createToken} from '../validators/token.js';
+import {createToken, verifyToken} from '../validators/token.js';
 import bcrypt from 'bcryptjs';
 
 function getRoutes() {
@@ -29,7 +29,7 @@ function getRoutes() {
     }
   });
 
-  routes.get('/users/:nick', async (req, res) => {
+  routes.get('/users/:nick', [verifyToken], async (req, res) => {
     const user = await User.findOne({nick: req.params.nick}).exec();
     if (!user) {
       return res.status(404).send('Not found!');
@@ -37,7 +37,7 @@ function getRoutes() {
     return res.json(user);
   });
 
-  routes.get('/users/:nick/comments', async (req, res) => {
+  routes.get('/users/:nick/comments', [verifyToken], async (req, res) => {
     const user = await User.findOne({nick: req.params.nick}).exec();
     if (!user) {
       return res.status(404).send('Not found!');
@@ -46,7 +46,7 @@ function getRoutes() {
     return res.json(comments);
   });
 
-  routes.patch('/users/:nick', async (req, res) => {
+  routes.patch('/users/:nick', [verifyToken], async (req, res) => {
     const user = await User.findOneAndUpdate(
       {nick: req.params.nick},
       {email: req.body.email},
@@ -58,7 +58,7 @@ function getRoutes() {
     return res.json(user);
   });
 
-  routes.delete('/users/:nick', async (req, res) => {
+  routes.delete('/users/:nick', [verifyToken], async (req, res) => {
     const user = await User.findOne({nick: req.params.nick}).exec();
     if (!user) {
       return res.status(404).send('Not found!');

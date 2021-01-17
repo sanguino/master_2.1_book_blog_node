@@ -3,6 +3,7 @@ import Book from '../models/Book.js';
 import User from '../models/User.js';
 import Comment from '../models/Comment.js';
 import {isValidObjectId} from '../validators/validators.js'
+import {verifyToken} from '../validators/token.js';
 
 function getRoutes() {
     const routes = Router();
@@ -12,12 +13,12 @@ function getRoutes() {
         return res.json(books);
     });
 
-    routes.post('/books', async (req, res) => {
+    routes.post('/books', [verifyToken], async (req, res) => {
         const book = await new Book(req.body).save();
         return res.json(book);
     });
 
-    routes.get('/books/:id', [isValidObjectId('id')], async (req, res) => {
+    routes.get('/books/:id', [verifyToken, isValidObjectId('id')], async (req, res) => {
         const book = await Book.findById(req.params.id).populate({
             path: 'comments',
             select: {bookId: 0},
@@ -29,7 +30,7 @@ function getRoutes() {
         return res.json(book);
     });
 
-    routes.post('/books/:id/comments', [isValidObjectId('id')], async (req, res) => {
+    routes.post('/books/:id/comments', [verifyToken, isValidObjectId('id')], async (req, res) => {
         const [user, book] = await Promise.all([
             User.findOne({nick: req.body.nick}),
             Book.findOne({_id: req.params.id})
@@ -52,7 +53,7 @@ function getRoutes() {
         return res.json(comment);
     });
 
-    routes.delete('/books/:bookId/comments/:commentId', [isValidObjectId('bookId')], async (req, res) => {
+    routes.delete('/books/:bookId/comments/:commentId', [verifyToken, isValidObjectId('bookId')], async (req, res) => {
         const comment = await Comment.findOne({_id: req.params.commentId, bookId: req.params.bookId}).exec();
 
         if (!comment) {
