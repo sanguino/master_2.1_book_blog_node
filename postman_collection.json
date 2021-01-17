@@ -6,383 +6,2508 @@
 	},
 	"item": [
 		{
-			"name": "DOC",
+			"name": "bookBlog",
 			"item": [
 				{
-					"name": "createUser",
-					"event": [
+					"name": "TESTS",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"id": "5588966e-2ab8-478d-ae58-6b14aae0d8f8",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"nick\": \"usuario\",\n    \"email\": \"usuario@email.com\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "auth block access",
+							"item": [
+								{
+									"name": "createUser",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nick\": \"usuario\",\n    \"email\": \"usuario@email.com\",\n    \"password\": \"pass\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/users",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"users"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "login user",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nick\": \"usuario\",\n    \"password\": \"pass\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/login",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"login"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get user",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 403\", function () {",
+													"    pm.response.to.have.status(403);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://localhost:8443/rest/users/usuario",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"users",
+												"usuario"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "modify user",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 403\", function () {",
+													"    pm.response.to.have.status(403);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"new@email.com\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/users/usuario",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"users",
+												"usuario"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "remove user",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 403\", function () {",
+													"    pm.response.to.have.status(403);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "https://localhost:8443/rest/users/usuario",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"users",
+												"usuario"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "create book",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 403\", function () {",
+													"    pm.response.to.have.status(403);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\": \"El Hobbit\",\n    \"synopsis\": \"un buen libro\",\n    \"author\": \"J. R. R. Tolkien\",\n    \"editorial\": \"George Allen & Unwin\",\n    \"publishedYear\": 1937\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/books",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show array of books",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://localhost:8443/rest/books",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show book info",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 403\", function () {",
+													"    pm.response.to.have.status(403);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://localhost:8443/rest/books/1",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "add comment to book",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 403\", function () {",
+													"    pm.response.to.have.status(403);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nick\": \"usuario\",\n    \"comment\": \"Another Great Book\",\n    \"score\": 52\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/books/1/comments",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books",
+												"1",
+												"comments"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show comments of user",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 403\", function () {",
+													"    pm.response.to.have.status(403);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://localhost:8443/rest/users/usuario/comments",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"users",
+												"usuario",
+												"comments"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "remove comment",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 403\", function () {",
+													"    pm.response.to.have.status(403);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "https://localhost:8443/rest/books/1/comments/1",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books",
+												"1",
+												"comments",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "remove user",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://localhost:8443/rest/users/usuario",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"users",
+												"usuario"
+											]
+										}
+									},
+									"response": []
 								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/rest/users",
-							"protocol": "http",
-							"host": [
-								"localhost"
 							],
-							"port": "8080",
-							"path": [
-								"rest",
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get user",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "27c876f3-ffbf-46b4-8541-c37ef6c23932",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/rest/users/usuario",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"rest",
-								"users",
-								"usuario"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "modify user",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "4f900819-8b65-4b8c-b9ba-8f696efec9e4",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"new@email.com\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
 								}
-							}
+							]
 						},
-						"url": {
-							"raw": "http://localhost:8080/rest/users/usuario",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"rest",
-								"users",
-								"usuario"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "remove user",
-					"event": [
 						{
-							"listen": "test",
-							"script": {
-								"id": "9c0db461-c15b-4338-bdef-5d2a24655577",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/rest/users/usuario",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"rest",
-								"users",
-								"usuario"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create book",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "7773c888-dde2-42f3-8990-3969ba62bf3a",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"title\": \"El Hobbit\",\n    \"synopsis\": \"un buen libro\",\n    \"author\": \"J. R. R. Tolkien\",\n    \"editorial\": \"George Allen & Unwin\",\n    \"publishedYear\": 1937\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "deleteUser",
+							"item": [
+								{
+									"name": "createUser",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"check user data\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.nick).to.eql(\"testDeleteUser\");",
+													"    pm.expect(jsonData.email).to.eql(\"testDeleteUser@gmail.com\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nick\": \"testDeleteUser\",\n    \"email\": \"testDeleteUser@gmail.com\",\n    \"password\": \"pass\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/users",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"users"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "login user",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.collectionVariables.set(\"token\", pm.response.json().token);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nick\": \"testDeleteUser\",\n    \"password\": \"pass\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/login",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"login"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "create book",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.collectionVariables.set(\"bookId\", pm.response.json().id);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\": \"El Hobbit\",\n    \"synopsis\": \"un buen libro\",\n    \"author\": \"J. R. R. Tolkien\",\n    \"editorial\": \"George Allen & Unwin\",\n    \"publishedYear\": 1937\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/books",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "create comment to user",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.collectionVariables.set(\"commentId\", pm.response.json().id);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nick\": \"testDeleteUser\",\n    \"comment\": \"Another Great Book\",\n    \"score\": 52\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/books/{{bookId}}/comments",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books",
+												"{{bookId}}",
+												"comments"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete user ko",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 409\", function () {",
+													"    pm.response.to.have.status(409);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://localhost:8443/rest/users/testDeleteUser",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"users",
+												"testDeleteUser"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete comment",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://localhost:8443/rest/books/{{bookId}}/comments/{{commentId}}",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books",
+												"{{bookId}}",
+												"comments",
+												"{{commentId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete user ok",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"check deleted user\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.nick).to.eql(\"testDeleteUser\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://localhost:8443/rest/users/testDeleteUser",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"users",
+												"testDeleteUser"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get user ko",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://localhost:8443/rest/users/testDeleteUser",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"users",
+												"testDeleteUser"
+											]
+										}
+									},
+									"response": []
 								}
-							}
+							]
 						},
-						"url": {
-							"raw": "http://localhost:8080/rest/books",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"rest",
-								"books"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "show array of books",
-					"event": [
 						{
-							"listen": "test",
-							"script": {
-								"id": "9f97f80a-d304-4768-b663-e55b6e249c4e",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/rest/books",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"rest",
-								"books"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "show book info",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "bb3bb992-b95d-4a47-bda7-bea5990d5049",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/rest/books/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"rest",
-								"books",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "add comment to book",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "2cce8660-65e4-437b-b704-98071c57b8c0",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"nick\": \"usuario\",\n    \"comment\": \"Another Great Book\",\n    \"score\": 52\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "createAndPatchUser",
+							"item": [
+								{
+									"name": "createUser",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"check user data\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.nick).to.eql(\"testCreateUser\");",
+													"    pm.expect(jsonData.email).to.eql(\"testCreateUser@gmail.com\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nick\": \"testCreateUser\",\n    \"email\": \"testCreateUser@gmail.com\",\n    \"password\": \"pass\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/users",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"users"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "login user",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nick\": \"testCreateUser\",\n    \"password\": \"pass\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/login",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"login"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get user",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"check user data\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.nick).to.eql(\"testCreateUser\");",
+													"    pm.expect(jsonData.email).to.eql(\"testCreateUser@gmail.com\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://localhost:8443/rest/users/testCreateUser",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"users",
+												"testCreateUser"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get user non exists",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://localhost:8443/rest/users/fakeUser",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"users",
+												"fakeUser"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "modify user",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"check user data is modified\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.nick).to.eql(\"testCreateUser\");",
+													"    pm.expect(jsonData.email).to.eql(\"testCreateUser@icloud.com\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"testCreateUser@icloud.com\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/users/testCreateUser",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"users",
+												"testCreateUser"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get user newEmail",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"check user data is modified\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.nick).to.eql(\"testCreateUser\");",
+													"    pm.expect(jsonData.email).to.eql(\"testCreateUser@icloud.com\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://localhost:8443/rest/users/testCreateUser",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"users",
+												"testCreateUser"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete user",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://localhost:8443/rest/users/testCreateUser",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"users",
+												"testCreateUser"
+											]
+										}
+									},
+									"response": []
 								}
-							}
+							]
 						},
-						"url": {
-							"raw": "http://localhost:8080/rest/books/1/comments",
-							"protocol": "http",
-							"host": [
-								"localhost"
+						{
+							"name": "createUserAndGetComments",
+							"item": [
+								{
+									"name": "createUser",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"check user data\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.nick).to.eql(\"testCreateUserComments\");",
+													"    pm.expect(jsonData.email).to.eql(\"testCreateUserComments@gmail.com\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nick\": \"testCreateUserComments\",\n    \"email\": \"testCreateUserComments@gmail.com\",\n    \"password\": \"pass\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/users",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"users"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "login user",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nick\": \"testCreateUserComments\",\n    \"password\": \"pass\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/login",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"login"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "create book",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.collectionVariables.set(\"bookId\", pm.response.json().id);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\": \"El Hobbit\",\n    \"synopsis\": \"un buen libro\",\n    \"author\": \"J. R. R. Tolkien\",\n    \"editorial\": \"George Allen & Unwin\",\n    \"publishedYear\": 1937\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/books",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "create comment error book not found",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nick\": \"testCreateUserComments\",\n    \"comment\": \"Another Great Book\",\n    \"score\": 52\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/books/333/comments",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books",
+												"333",
+												"comments"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "create comment error user not found",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nick\": \"fakeUser\",\n    \"comment\": \"Another Great Book\",\n    \"score\": 52\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/books/{{bookId}}/comments",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books",
+												"{{bookId}}",
+												"comments"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "create comment 1 to user",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.collectionVariables.set(\"comment1Id\", pm.response.json().id);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nick\": \"testCreateUserComments\",\n    \"comment\": \"Another Great Book\",\n    \"score\": 52\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/books/{{bookId}}/comments",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books",
+												"{{bookId}}",
+												"comments"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "create comment 2 to user",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"",
+													"pm.collectionVariables.set(\"comment2Id\", pm.response.json().id);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nick\": \"testCreateUserComments\",\n    \"comment\": \"Another Great Book\",\n    \"score\": 52\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/books/{{bookId}}/comments",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books",
+												"{{bookId}}",
+												"comments"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all comments of user",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"check comments are created at correct book\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData[0].id).to.eql(pm.collectionVariables.get(\"comment1Id\"));",
+													"    pm.expect(jsonData[0].bookId).to.eql(pm.collectionVariables.get(\"bookId\"));",
+													"    pm.expect(jsonData[1].id).to.eql(pm.collectionVariables.get(\"comment2Id\"));",
+													"    pm.expect(jsonData[1].bookId).to.eql(pm.collectionVariables.get(\"bookId\"));",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://localhost:8443/rest/users/testCreateUserComments/comments",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"users",
+												"testCreateUserComments",
+												"comments"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete comment 1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://localhost:8443/rest/books/{{bookId}}/comments/{{comment1Id}}",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books",
+												"{{bookId}}",
+												"comments",
+												"{{comment1Id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete comment 2",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://localhost:8443/rest/books/{{bookId}}/comments/{{comment2Id}}",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books",
+												"{{bookId}}",
+												"comments",
+												"{{comment2Id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all comments of user empty",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"check comments are created at correct book\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.length == 0);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://localhost:8443/rest/users/testCreateUserComments/comments",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"users",
+												"testCreateUserComments",
+												"comments"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete user",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://localhost:8443/rest/users/testCreateUserComments",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"users",
+												"testCreateUserComments"
+											]
+										}
+									},
+									"response": []
+								}
 							],
-							"port": "8080",
-							"path": [
-								"rest",
-								"books",
-								"1",
-								"comments"
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							]
+						},
+						{
+							"name": "createBookAndComments",
+							"item": [
+								{
+									"name": "createUser",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"check user data\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.nick).to.eql(\"testBook\");",
+													"    pm.expect(jsonData.email).to.eql(\"testBook@gmail.com\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nick\": \"testBook\",\n    \"email\": \"testBook@gmail.com\",\n    \"password\": \"pass\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/users",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"users"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "login user",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nick\": \"testBook\",\n    \"password\": \"pass\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/login",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"login"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "create book",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"check book data\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.title).to.eql(\"El Hobbit\");",
+													"});",
+													"",
+													"pm.collectionVariables.set(\"book1Id\", pm.response.json().id);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\": \"El Hobbit\",\n    \"synopsis\": \"un buen libro\",\n    \"author\": \"J. R. R. Tolkien\",\n    \"editorial\": \"George Allen & Unwin\",\n    \"publishedYear\": 1937\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/books",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "create book",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"check book data\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.title).to.eql(\"El Hobbit 2\");",
+													"});",
+													"",
+													"pm.collectionVariables.set(\"book2Id\", pm.response.json().id);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\": \"El Hobbit 2\",\n    \"synopsis\": \"un buen libro\",\n    \"author\": \"J. R. R. Tolkien\",\n    \"editorial\": \"George Allen & Unwin\",\n    \"publishedYear\": 1937\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/books",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get books",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"check books ids\", function () {",
+													"    var jsonData = pm.response.json();",
+													"     pm.expect(jsonData[jsonData.length -2].id).to.eql(pm.collectionVariables.get(\"book1Id\"));",
+													"     pm.expect(jsonData[jsonData.length -1].id).to.eql(pm.collectionVariables.get(\"book2Id\"));",
+													"});",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://localhost:8443/rest/books",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "create comment 1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"check nick\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.user.nick).to.eql(\"testBook\");",
+													"});",
+													"",
+													"pm.collectionVariables.set(\"comment1Id\", pm.response.json().id);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nick\": \"testBook\",\n    \"comment\": \"Another Great Book\",\n    \"score\": 52\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/books/{{book1Id}}/comments",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books",
+												"{{book1Id}}",
+												"comments"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "create comment 2",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"check nick\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.user.nick).to.eql(\"testBook\");",
+													"});",
+													"",
+													"pm.collectionVariables.set(\"comment2Id\", pm.response.json().id);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nick\": \"testBook\",\n    \"comment\": \"Another Great Book\",\n    \"score\": 52\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8443/rest/books/{{book1Id}}/comments",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books",
+												"{{book1Id}}",
+												"comments"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get book",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"check book id and comments length\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.id).to.eql(pm.collectionVariables.get(\"book1Id\"));",
+													"    pm.expect(jsonData.comments.length).to.eql(2);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://localhost:8443/rest/books/{{book1Id}}",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books",
+												"{{book1Id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delte comment 1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"check deleted id\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.id).to.eql(pm.collectionVariables.get(\"comment1Id\"));",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://localhost:8443/rest/books/{{book1Id}}/comments/{{comment1Id}}",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books",
+												"{{book1Id}}",
+												"comments",
+												"{{comment1Id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get book again",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"check book id and comments length\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.id).to.eql(pm.collectionVariables.get(\"book1Id\"));",
+													"    pm.expect(jsonData.comments.length).to.eql(1);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://localhost:8443/rest/books/{{book1Id}}",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books",
+												"{{book1Id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delte comment 2 of book2 ko",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://localhost:8443/rest/books/{{book1Id}}/comments/{{comment1Id}}",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books",
+												"{{book1Id}}",
+												"comments",
+												"{{comment1Id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delte comment 2",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"check deleted id\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.id).to.eql(pm.collectionVariables.get(\"comment2Id\"));",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://localhost:8443/rest/books/{{book1Id}}/comments/{{comment2Id}}",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books",
+												"{{book1Id}}",
+												"comments",
+												"{{comment2Id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get book withoutComments",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"check book id and comments length\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.id).to.eql(pm.collectionVariables.get(\"book1Id\"));",
+													"    pm.expect(jsonData.comments.length).to.eql(0);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://localhost:8443/rest/books/{{book1Id}}",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"books",
+												"{{book1Id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete user",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "x-access-token",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://localhost:8443/rest/users/testBook",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8443",
+											"path": [
+												"rest",
+												"users",
+												"testBook"
+											]
+										}
+									},
+									"response": []
+								}
 							]
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "show comments of user",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "92ae0ea8-73a2-49cf-916f-9289828edd11",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/rest/users/usuario/comments",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"rest",
-								"users",
-								"usuario",
-								"comments"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "remove comment",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "e9feaf34-8521-4ef9-a05d-2dd301fdb954",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/rest/books/1/comments/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"rest",
-								"books",
-								"1",
-								"comments",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "TESTS",
-			"item": [
-				{
-					"name": "deleteUser",
+					"name": "DOC",
 					"item": [
 						{
 							"name": "createUser",
@@ -390,17 +2515,8 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c8aac068-7c2b-46ce-981a-2d8d17ef3eda",
 										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"check user data\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.nick).to.eql(\"testDeleteUser\");",
-											"    pm.expect(jsonData.email).to.eql(\"testDeleteUser@gmail.com\");",
-											"});"
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -411,7 +2527,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"nick\": \"testDeleteUser\",\n    \"email\": \"testDeleteUser@gmail.com\"\n}",
+									"raw": "{\n    \"nick\": \"usuario\",\n    \"email\": \"usuario@email.com\",\n    \"password\": \"pass\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -419,12 +2535,12 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/rest/users",
-									"protocol": "http",
+									"raw": "https://localhost:8443/rest/users",
+									"protocol": "https",
 									"host": [
 										"localhost"
 									],
-									"port": "8080",
+									"port": "8443",
 									"path": [
 										"rest",
 										"users"
@@ -434,18 +2550,13 @@
 							"response": []
 						},
 						{
-							"name": "create book",
+							"name": "login user",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "a996f4d1-7002-499d-a0dd-19b68e404b5d",
 										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.collectionVariables.set(\"bookId\", pm.response.json().id);"
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -456,7 +2567,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"title\": \"El Hobbit\",\n    \"synopsis\": \"un buen libro\",\n    \"author\": \"J. R. R. Tolkien\",\n    \"editorial\": \"George Allen & Unwin\",\n    \"publishedYear\": 1937\n}",
+									"raw": "{\n    \"nick\": \"usuario\",\n    \"password\": \"pass\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -464,268 +2575,15 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/rest/books",
-									"protocol": "http",
+									"raw": "https://localhost:8443/rest/login",
+									"protocol": "https",
 									"host": [
 										"localhost"
 									],
-									"port": "8080",
+									"port": "8443",
 									"path": [
 										"rest",
-										"books"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "create comment to user",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "eefe0e8b-ab9f-40b0-8e29-6730369577a9",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.collectionVariables.set(\"commentId\", pm.response.json().id);"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"nick\": \"testDeleteUser\",\n    \"comment\": \"Another Great Book\",\n    \"score\": 52\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8080/rest/books/{{bookId}}/comments",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"books",
-										"{{bookId}}",
-										"comments"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "delete user ko",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "d3136bd3-462e-4a4f-9ad7-be071a8d0b8c",
-										"exec": [
-											"pm.test(\"Status code is 409\", function () {",
-											"    pm.response.to.have.status(409);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/rest/users/testDeleteUser",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"users",
-										"testDeleteUser"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "delete comment",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "b5cab155-9a69-4ae6-a254-a416399b57ac",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/rest/books/{{bookId}}/comments/{{commentId}}",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"books",
-										"{{bookId}}",
-										"comments",
-										"{{commentId}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "delete user ok",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "d000183a-5de2-43f5-a858-81940f631509",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"check deleted user\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.nick).to.eql(\"testDeleteUser\");",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/rest/users/testDeleteUser",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"users",
-										"testDeleteUser"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get user ko",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "694a9065-a91e-42e8-8195-14ae16bee5d1",
-										"exec": [
-											"pm.test(\"Status code is 404\", function () {",
-											"    pm.response.to.have.status(404);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/rest/users/testDeleteUser",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"users",
-										"testDeleteUser"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "createAndPatchUser",
-					"item": [
-						{
-							"name": "createUser",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "47ad9ce6-6d1c-432f-9744-0e6b6f167e16",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"check user data\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.nick).to.eql(\"testCreateUser\");",
-											"    pm.expect(jsonData.email).to.eql(\"testCreateUser@gmail.com\");",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"nick\": \"testCreateUser\",\n    \"email\": \"testCreateUser@gmail.com\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8080/rest/users",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"users"
+										"login"
 									]
 								}
 							},
@@ -737,53 +2595,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f033474c-7696-4d8e-8ae1-1b65a0ba59e3",
 										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"check user data\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.nick).to.eql(\"testCreateUser\");",
-											"    pm.expect(jsonData.email).to.eql(\"testCreateUser@gmail.com\");",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/rest/users/testCreateUser",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"users",
-										"testCreateUser"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get user non exists",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "dec10b8b-b45b-41d6-8c9d-216d9a5a32ec",
-										"exec": [
-											"pm.test(\"Status code is 404\", function () {",
-											"    pm.response.to.have.status(404);",
-											"});",
-											"",
 											""
 										],
 										"type": "text/javascript"
@@ -794,16 +2606,16 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/rest/users/fakeUser",
-									"protocol": "http",
+									"raw": "https://localhost:8443/rest/users/usuario",
+									"protocol": "https",
 									"host": [
 										"localhost"
 									],
-									"port": "8080",
+									"port": "8443",
 									"path": [
 										"rest",
 										"users",
-										"fakeUser"
+										"usuario"
 									]
 								}
 							},
@@ -815,17 +2627,8 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d8a09bd8-5671-4ba3-8a26-f76b9b17a926",
 										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"check user data is modified\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.nick).to.eql(\"testCreateUser\");",
-											"    pm.expect(jsonData.email).to.eql(\"testCreateUser@icloud.com\");",
-											"});"
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -836,7 +2639,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"email\": \"testCreateUser@icloud.com\"\n}",
+									"raw": "{\n    \"email\": \"new@email.com\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -844,73 +2647,28 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/rest/users/testCreateUser",
-									"protocol": "http",
+									"raw": "https://localhost:8443/rest/users/usuario",
+									"protocol": "https",
 									"host": [
 										"localhost"
 									],
-									"port": "8080",
+									"port": "8443",
 									"path": [
 										"rest",
 										"users",
-										"testCreateUser"
+										"usuario"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "get user newEmail",
+							"name": "remove user",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "86ed30b7-33d0-4341-8e0f-d8bc04477bc5",
 										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"check user data is modified\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.nick).to.eql(\"testCreateUser\");",
-											"    pm.expect(jsonData.email).to.eql(\"testCreateUser@icloud.com\");",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/rest/users/testCreateUser",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"users",
-										"testCreateUser"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "delete user",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "eab9c675-1e22-47a8-b07f-f2ac3dd87a39",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
 											""
 										],
 										"type": "text/javascript"
@@ -921,72 +2679,16 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/rest/users/testCreateUser",
-									"protocol": "http",
+									"raw": "https://localhost:8443/rest/users/usuario",
+									"protocol": "https",
 									"host": [
 										"localhost"
 									],
-									"port": "8080",
+									"port": "8443",
 									"path": [
 										"rest",
 										"users",
-										"testCreateUser"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "createUserAndGetComments",
-					"item": [
-						{
-							"name": "createUser",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "a0e3f634-3d37-4bc3-aebd-a81bfbdc2cb2",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"check user data\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.nick).to.eql(\"testCreateUserComments\");",
-											"    pm.expect(jsonData.email).to.eql(\"testCreateUserComments@gmail.com\");",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"nick\": \"testCreateUserComments\",\n    \"email\": \"testCreateUserComments@gmail.com\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8080/rest/users",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"users"
+										"usuario"
 									]
 								}
 							},
@@ -998,13 +2700,8 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "7eee08b8-1397-487b-b72f-57f5e0716910",
 										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.collectionVariables.set(\"bookId\", pm.response.json().id);"
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -1023,12 +2720,12 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/rest/books",
-									"protocol": "http",
+									"raw": "https://localhost:8443/rest/books",
+									"protocol": "https",
 									"host": [
 										"localhost"
 									],
-									"port": "8080",
+									"port": "8443",
 									"path": [
 										"rest",
 										"books"
@@ -1038,212 +2735,13 @@
 							"response": []
 						},
 						{
-							"name": "create comment error book not found",
+							"name": "show array of books",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "c5dfd22f-2221-49c1-8d0a-656eef369f7f",
 										"exec": [
-											"pm.test(\"Status code is 404\", function () {",
-											"    pm.response.to.have.status(404);",
-											"});",
 											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"nick\": \"testCreateUserComments\",\n    \"comment\": \"Another Great Book\",\n    \"score\": 52\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8080/rest/books/333/comments",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"books",
-										"333",
-										"comments"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "create comment error user not found",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "4187fc59-9b87-4cda-9ea7-2b531cc8bd96",
-										"exec": [
-											"pm.test(\"Status code is 404\", function () {",
-											"    pm.response.to.have.status(404);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"nick\": \"fakeUser\",\n    \"comment\": \"Another Great Book\",\n    \"score\": 52\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8080/rest/books/{{bookId}}/comments",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"books",
-										"{{bookId}}",
-										"comments"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "create comment 1 to user",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "04c617ad-eab1-4b82-8f79-fa64c305ee87",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.collectionVariables.set(\"comment1Id\", pm.response.json().id);",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"nick\": \"testCreateUserComments\",\n    \"comment\": \"Another Great Book\",\n    \"score\": 52\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8080/rest/books/{{bookId}}/comments",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"books",
-										"{{bookId}}",
-										"comments"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "create comment 2 to user",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "5da95824-e427-4f58-b86f-202aa36cfe0a",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"",
-											"pm.collectionVariables.set(\"comment2Id\", pm.response.json().id);"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"nick\": \"testCreateUserComments\",\n    \"comment\": \"Another Great Book\",\n    \"score\": 52\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8080/rest/books/{{bookId}}/comments",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"books",
-										"{{bookId}}",
-										"comments"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get all comments of user",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "f2c368a0-2589-4976-b2fc-b626d4b38b83",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"check comments are created at correct book\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData[0].id).to.eql(pm.collectionVariables.get(\"comment1Id\"));",
-											"    pm.expect(jsonData[0].bookId).to.eql(pm.collectionVariables.get(\"bookId\"));",
-											"    pm.expect(jsonData[1].id).to.eql(pm.collectionVariables.get(\"comment2Id\"));",
-											"    pm.expect(jsonData[1].bookId).to.eql(pm.collectionVariables.get(\"bookId\"));",
-											"});"
 										],
 										"type": "text/javascript"
 									}
@@ -1253,114 +2751,28 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/rest/users/testCreateUserComments/comments",
-									"protocol": "http",
+									"raw": "https://localhost:8443/rest/books",
+									"protocol": "https",
 									"host": [
 										"localhost"
 									],
-									"port": "8080",
+									"port": "8443",
 									"path": [
 										"rest",
-										"users",
-										"testCreateUserComments",
-										"comments"
+										"books"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "delete comment 1",
+							"name": "show book info",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "e62fd4fe-d9e9-4f9d-9ffe-75290b3bb2db",
 										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
 											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/rest/books/{{bookId}}/comments/{{comment1Id}}",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"books",
-										"{{bookId}}",
-										"comments",
-										"{{comment1Id}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "delete comment 2",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "eb7f5f55-1354-41d4-858c-614b37ed0f37",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/rest/books/{{bookId}}/comments/{{comment2Id}}",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"books",
-										"{{bookId}}",
-										"comments",
-										"{{comment2Id}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get all comments of user empty",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "24a55fb3-183e-4c53-9b03-ff6d987a9dbd",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"check comments are created at correct book\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.length == 0);",
-											"});"
 										],
 										"type": "text/javascript"
 									}
@@ -1370,16 +2782,57 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/rest/users/testCreateUserComments/comments",
-									"protocol": "http",
+									"raw": "https://localhost:8443/rest/books/1",
+									"protocol": "https",
 									"host": [
 										"localhost"
 									],
-									"port": "8080",
+									"port": "8443",
 									"path": [
 										"rest",
-										"users",
-										"testCreateUserComments",
+										"books",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add comment to book",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nick\": \"usuario\",\n    \"comment\": \"Another Great Book\",\n    \"score\": 52\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8443/rest/books/1/comments",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"rest",
+										"books",
+										"1",
 										"comments"
 									]
 								}
@@ -1387,16 +2840,45 @@
 							"response": []
 						},
 						{
-							"name": "delete user",
+							"name": "show comments of user",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "721f2b5e-81e3-4102-83cb-ae7d083d78e3",
 										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/rest/users/usuario/comments",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"rest",
+										"users",
+										"usuario",
+										"comments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "remove comment",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
 											""
 										],
 										"type": "text/javascript"
@@ -1407,670 +2889,228 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/rest/users/testCreateUserComments",
-									"protocol": "http",
+									"raw": "https://localhost:8443/rest/books/1/comments/1",
+									"protocol": "https",
 									"host": [
 										"localhost"
 									],
-									"port": "8080",
+									"port": "8443",
 									"path": [
 										"rest",
-										"users",
-										"testCreateUserComments"
+										"books",
+										"1",
+										"comments",
+										"1"
 									]
 								}
 							},
 							"response": []
 						}
-					],
+					]
+				}
+			]
+		},
+		{
+			"name": "eoloPlant",
+			"item": [
+				{
+					"name": "create EoloPlant",
 					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "cb727da5-561e-4ad6-9854-eb44d537409d",
-								"type": "text/javascript",
-								"exec": [
-									""
-								]
-							}
-						},
 						{
 							"listen": "test",
 							"script": {
-								"id": "f4af9ca7-edce-4d74-bda7-be71b987c0b4",
-								"type": "text/javascript",
 								"exec": [
-									""
-								]
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"check user data\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.nick).to.eql(\"testDeleteUser\");",
+									"    pm.expect(jsonData.email).to.eql(\"testDeleteUser@gmail.com\");",
+									"});"
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"city\": \"Madrid\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8880/api/eoloplants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8880",
+							"path": [
+								"api",
+								"eoloplants"
+							]
+						}
+					},
+					"response": []
 				},
 				{
-					"name": "createBookAndComments",
-					"item": [
+					"name": "get all EoloPlants",
+					"event": [
 						{
-							"name": "createUser",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "67430312-bdd5-4eff-8a8a-6bb3e4d64fe0",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"check user data\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.nick).to.eql(\"testBook\");",
-											"    pm.expect(jsonData.email).to.eql(\"testBook@gmail.com\");",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"nick\": \"testBook\",\n    \"email\": \"testBook@gmail.com\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8080/rest/users",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"users"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "create book",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "9551586c-1f2f-409c-b55a-35186982164e",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"check book data\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.title).to.eql(\"El Hobbit\");",
-											"});",
-											"",
-											"pm.collectionVariables.set(\"book1Id\", pm.response.json().id);"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"title\": \"El Hobbit\",\n    \"synopsis\": \"un buen libro\",\n    \"author\": \"J. R. R. Tolkien\",\n    \"editorial\": \"George Allen & Unwin\",\n    \"publishedYear\": 1937\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8080/rest/books",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"books"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "create book",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "44971664-12e5-40a3-8ccd-be9cad323d6e",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"check book data\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.title).to.eql(\"El Hobbit 2\");",
-											"});",
-											"",
-											"pm.collectionVariables.set(\"book2Id\", pm.response.json().id);"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"title\": \"El Hobbit 2\",\n    \"synopsis\": \"un buen libro\",\n    \"author\": \"J. R. R. Tolkien\",\n    \"editorial\": \"George Allen & Unwin\",\n    \"publishedYear\": 1937\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8080/rest/books",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"books"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get books",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "441a00e8-e16f-48e7-aab8-c54cf7df249b",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"check books ids\", function () {",
-											"    var jsonData = pm.response.json();",
-											"     pm.expect(jsonData[jsonData.length -2].id).to.eql(pm.collectionVariables.get(\"book1Id\"));",
-											"     pm.expect(jsonData[jsonData.length -1].id).to.eql(pm.collectionVariables.get(\"book2Id\"));",
-											"});",
-											"",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/rest/books",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"books"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "create comment 1",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "e0786add-9e79-4c1d-8250-e67e05eff4af",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"check nick\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.user.nick).to.eql(\"testBook\");",
-											"});",
-											"",
-											"pm.collectionVariables.set(\"comment1Id\", pm.response.json().id);",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"nick\": \"testBook\",\n    \"comment\": \"Another Great Book\",\n    \"score\": 52\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8080/rest/books/{{book1Id}}/comments",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"books",
-										"{{book1Id}}",
-										"comments"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "create comment 2",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "8fc3e097-3410-4897-8f8e-c715d161f786",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"check nick\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.user.nick).to.eql(\"testBook\");",
-											"});",
-											"",
-											"pm.collectionVariables.set(\"comment2Id\", pm.response.json().id);",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"nick\": \"testBook\",\n    \"comment\": \"Another Great Book\",\n    \"score\": 52\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8080/rest/books/{{book1Id}}/comments",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"books",
-										"{{book1Id}}",
-										"comments"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get book",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "4b7bbe04-2945-4adb-8b8a-4e362f104438",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"check book id and comments length\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.id).to.eql(pm.collectionVariables.get(\"book1Id\"));",
-											"    pm.expect(jsonData.comments.length).to.eql(2);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/rest/books/{{book1Id}}",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"books",
-										"{{book1Id}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "delte comment 1",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "c12107f2-4ef6-4cab-9151-3f4fed039dc0",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"check deleted id\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.id).to.eql(pm.collectionVariables.get(\"comment1Id\"));",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/rest/books/{{book1Id}}/comments/{{comment1Id}}",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"books",
-										"{{book1Id}}",
-										"comments",
-										"{{comment1Id}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get book again",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "3ac4b528-6d47-4b73-9c8e-e0df30a5f4d1",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"check book id and comments length\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.id).to.eql(pm.collectionVariables.get(\"book1Id\"));",
-											"    pm.expect(jsonData.comments.length).to.eql(1);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/rest/books/{{book1Id}}",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"books",
-										"{{book1Id}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "delte comment 2 of book2 ko",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "b73f8e98-9a83-48c7-9995-d05b7007faf5",
-										"exec": [
-											"pm.test(\"Status code is 404\", function () {",
-											"    pm.response.to.have.status(404);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/rest/books/{{book1Id}}/comments/{{comment1Id}}",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"books",
-										"{{book1Id}}",
-										"comments",
-										"{{comment1Id}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "delte comment 2",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "1b95338f-a9cc-4328-8774-3e937da4b2b7",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"check deleted id\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.id).to.eql(pm.collectionVariables.get(\"comment2Id\"));",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/rest/books/{{book1Id}}/comments/{{comment2Id}}",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"books",
-										"{{book1Id}}",
-										"comments",
-										"{{comment2Id}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get book withoutComments",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "5878ca9e-6c12-4be6-92f0-d4bb383ff93c",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"check book id and comments length\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.id).to.eql(pm.collectionVariables.get(\"book1Id\"));",
-											"    pm.expect(jsonData.comments.length).to.eql(0);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/rest/books/{{book1Id}}",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"books",
-										"{{book1Id}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "delete user",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "4b870a09-3e21-45f7-ab12-67bb1a34243a",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/rest/users/testBook",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"rest",
-										"users",
-										"testBook"
-									]
-								}
-							},
-							"response": []
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"check user data\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.nick).to.eql(\"testDeleteUser\");",
+									"    pm.expect(jsonData.email).to.eql(\"testDeleteUser@gmail.com\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8880/api/eoloplants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8880",
+							"path": [
+								"api",
+								"eoloplants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get EoloPlant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"check user data\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.nick).to.eql(\"testDeleteUser\");",
+									"    pm.expect(jsonData.email).to.eql(\"testDeleteUser@gmail.com\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8880/api/eoloplants/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8880",
+							"path": [
+								"api",
+								"eoloplants",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete EoloPlant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"check user data\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.nick).to.eql(\"testDeleteUser\");",
+									"    pm.expect(jsonData.email).to.eql(\"testDeleteUser@gmail.com\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8880/api/eoloplants/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8880",
+							"path": [
+								"api",
+								"eoloplants",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		}
 	],
 	"variable": [
 		{
-			"id": "e6e239cc-208e-4d5b-a053-8812e619b3f9",
 			"key": "bookId",
 			"value": ""
 		},
 		{
-			"id": "2be0b535-c3fc-48d7-a2c3-bab9c3217226",
 			"key": "comment1Id",
 			"value": ""
 		},
 		{
-			"id": "b16307a7-f12f-4bfe-8bea-af358689c46c",
 			"key": "comment2Id",
 			"value": ""
 		},
 		{
-			"id": "da6ed0b5-8eee-46c5-8b52-4ef82049f77e",
 			"key": "book1Id",
 			"value": ""
 		},
 		{
-			"id": "33e05c34-5590-45b1-ab4a-5318c244398f",
 			"key": "book2Id",
 			"value": ""
 		},
 		{
-			"id": "449d6284-dd74-42df-98cd-3f7949a85b24",
 			"key": "commentId",
 			"value": ""
+		},
+		{
+			"key": "token",
+			"value": ""
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
