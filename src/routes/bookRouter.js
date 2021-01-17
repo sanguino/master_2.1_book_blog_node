@@ -53,6 +53,25 @@ function getRoutes() {
         return res.json(comment);
     });
 
+    routes.delete('/books/:bookId', [verifyToken, isValidObjectId('bookId')], async (req, res) => {
+        const book = await Book.findOne({
+            _id: req.params.bookId
+        }).populate({
+            path: 'comments',
+            select: {bookId: 0},
+            populate: {path: 'user'}
+        });
+        if (!book) {
+            return res.status(404).send('Not found!');
+        }
+        const comments = await Comment.find({bookId: req.params.bookId}).exec();
+        if (comments) {
+            await Promise.all(comments.map(comment => comment.delete()));
+        }
+        await book.delete();
+        return res.json(book);
+    });
+
     routes.delete('/books/:bookId/comments/:commentId', [verifyToken, isValidObjectId('bookId')], async (req, res) => {
         const comment = await Comment.findOne({_id: req.params.commentId, bookId: req.params.bookId}).exec();
 
