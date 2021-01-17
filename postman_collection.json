@@ -111,7 +111,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://localhost:8443/rest/users/usuario?Authorization={{token}}",
+							"raw": "https://localhost:8443/rest/users/usuario",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -121,12 +121,6 @@
 								"rest",
 								"users",
 								"usuario"
-							],
-							"query": [
-								{
-									"key": "Authorization",
-									"value": "{{token}}"
-								}
 							]
 						}
 					},
@@ -194,9 +188,15 @@
 					],
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "https://localhost:8443/rest/users/usuario?Authorization={{token}}",
+							"raw": "https://localhost:8443/rest/users/usuario",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -206,12 +206,6 @@
 								"rest",
 								"users",
 								"usuario"
-							],
-							"query": [
-								{
-									"key": "Authorization",
-									"value": "{{token}}"
-								}
 							]
 						}
 					},
@@ -232,7 +226,13 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"title\": \"El Hobbit\",\n    \"synopsis\": \"un buen libro\",\n    \"author\": \"J. R. R. Tolkien\",\n    \"editorial\": \"George Allen & Unwin\",\n    \"publishedYear\": 1937\n}",
@@ -243,7 +243,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8443/rest/books?Authorization={{token}}",
+							"raw": "https://localhost:8443/rest/books",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -252,12 +252,6 @@
 							"path": [
 								"rest",
 								"books"
-							],
-							"query": [
-								{
-									"key": "Authorization",
-									"value": "{{token}}"
-								}
 							]
 						}
 					},
@@ -278,7 +272,13 @@
 					],
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "https://localhost:8443/rest/books",
 							"protocol": "https",
@@ -309,9 +309,15 @@
 					],
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "https://localhost:8443/rest/books/1?Authorization={{token}}",
+							"raw": "https://localhost:8443/rest/books/1",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -321,12 +327,6 @@
 								"rest",
 								"books",
 								"1"
-							],
-							"query": [
-								{
-									"key": "Authorization",
-									"value": "{{token}}"
-								}
 							]
 						}
 					},
@@ -364,7 +364,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://localhost:8443/rest/books/{{bookId}}?Authorization={{token}}",
+							"raw": "https://localhost:8443/rest/books/1",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -373,13 +373,7 @@
 							"path": [
 								"rest",
 								"books",
-								"{{bookId}}"
-							],
-							"query": [
-								{
-									"key": "Authorization",
-									"value": "{{token}}"
-								}
+								"1"
 							]
 						}
 					},
@@ -400,7 +394,13 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"nick\": \"usuario\",\n    \"comment\": \"Another Great Book\",\n    \"score\": 52\n}",
@@ -411,7 +411,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8443/rest/books/1/comments?Authorization={{token}}",
+							"raw": "https://localhost:8443/rest/books/1/comments",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -422,12 +422,6 @@
 								"books",
 								"1",
 								"comments"
-							],
-							"query": [
-								{
-									"key": "Authorization",
-									"value": "{{token}}"
-								}
 							]
 						}
 					},
@@ -448,9 +442,15 @@
 					],
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "https://localhost:8443/rest/users/usuario/comments?Authorization={{token}}",
+							"raw": "https://localhost:8443/rest/users/usuario/comments",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -461,12 +461,6 @@
 								"users",
 								"usuario",
 								"comments"
-							],
-							"query": [
-								{
-									"key": "Authorization",
-									"value": "{{token}}"
-								}
 							]
 						}
 					},
@@ -487,9 +481,15 @@
 					],
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "https://localhost:8443/rest/books/1/comments/1?Authorization={{token}}",
+							"raw": "https://localhost:8443/rest/books/1/comments/1",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -501,12 +501,6 @@
 								"1",
 								"comments",
 								"1"
-							],
-							"query": [
-								{
-									"key": "Authorization",
-									"value": "{{token}}"
-								}
 							]
 						}
 					},
