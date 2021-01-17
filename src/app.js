@@ -1,4 +1,8 @@
 import express from 'express';
+import https from 'https';
+import fs from 'fs';
+import path from 'path';
+
 import dbConnect from './dataInterface.js';
 import bookRouter from './routes/bookRouter.js';
 import userRouter from './routes/userRouter.js';
@@ -8,13 +12,16 @@ app.use(express.json());
 app.use('/rest', bookRouter);
 app.use('/rest', userRouter);
 
-async function main() {
 
-    await dbConnect();
+await dbConnect();
 
-    app.listen(8080, () => {
-        console.log('Example app listening on port 8080!');
-    });
-}
+https.createServer({
+    key: fs.readFileSync(path.resolve('src', 'ssl', 'server.key')),
+    cert: fs.readFileSync(path.resolve('src', 'ssl', 'server.cert'))
+}, app).listen(8443, () => {
+    console.log("Https server started in port 8443"); });
 
-main();
+
+
+
+
