@@ -20,7 +20,7 @@ function getRoutes() {
     res.status(200).send({auth: true, token: token});
   });
 
-  routes.post("/users", async (req, res) => {
+  routes.post('/users', async (req, res) => {
     try {
       const password = bcrypt.hashSync(req.body.password, 8);
       const user = await new User({...req.body, password}).save();
@@ -30,7 +30,7 @@ function getRoutes() {
     }
   });
 
-  routes.get("/users/:nick", async (req, res) => {
+  routes.get('/users/:nick', async (req, res) => {
     const user = await User.findOne({nick: req.params.nick}).exec();
     if (!user) {
       return res.status(404).send('Not found!');
@@ -38,7 +38,7 @@ function getRoutes() {
     return res.json(user);
   });
 
-  routes.get("/users/:nick/comments", async (req, res) => {
+  routes.get('/users/:nick/comments', async (req, res) => {
     const user = await User.findOne({nick: req.params.nick}).exec();
     if (!user) {
       return res.status(404).send('Not found!');
@@ -47,7 +47,7 @@ function getRoutes() {
     return res.json(comments);
   });
 
-  routes.patch("/users/:nick", async (req, res) => {
+  routes.patch('/users/:nick', async (req, res) => {
     const user = await User.findOneAndUpdate(
       {nick: req.params.nick},
       {email: req.body.email},
@@ -59,7 +59,7 @@ function getRoutes() {
     return res.json(user);
   });
 
-  routes.delete("/users/:nick", async (req, res) => {
+  routes.delete('/users/:nick', async (req, res) => {
     const user = await User.findOne({nick: req.params.nick}).exec();
     if (!user) {
       return res.status(404).send('Not found!');

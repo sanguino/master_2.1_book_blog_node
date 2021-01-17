@@ -19,7 +19,7 @@ https.createServer({
     key: fs.readFileSync(path.resolve('src', 'ssl', 'server.key')),
     cert: fs.readFileSync(path.resolve('src', 'ssl', 'server.cert'))
 }, app).listen(8443, () => {
-    console.log("Https server started in port 8443"); });
+    console.log('Https server started in port 8443'); });
 
 
 
