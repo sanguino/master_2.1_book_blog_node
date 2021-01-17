@@ -11,3 +11,8 @@
 $ ./startMongo.sh
 ```
 
+#### exec
+
+```bash
+$ npm start
+```

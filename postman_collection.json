@@ -346,7 +346,6 @@
 									"pm.test(\"check book id and comments length\", function () {",
 									"    var jsonData = pm.response.json();",
 									"    pm.expect(jsonData.id).to.eql(pm.collectionVariables.get(\"bookId\"));",
-									"    pm.expect(jsonData.comments.length).to.eql(2);",
 									"});",
 									""
 								],
