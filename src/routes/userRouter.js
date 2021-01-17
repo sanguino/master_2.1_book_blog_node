@@ -1,7 +1,7 @@
 import {Router} from 'express';
 import User from '../models/User.js';
 import Comment from '../models/Comment.js';
-import {createToken, verifyToken} from '../validators/token.js';
+import {createToken, verifyToken} from '../helpers/token.js';
 import bcrypt from 'bcryptjs';
 
 function getRoutes() {

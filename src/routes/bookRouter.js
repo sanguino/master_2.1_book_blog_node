@@ -2,8 +2,8 @@ import {Router} from 'express';
 import Book from '../models/Book.js';
 import User from '../models/User.js';
 import Comment from '../models/Comment.js';
-import {isValidObjectId} from '../validators/validators.js'
-import {verifyToken} from '../validators/token.js';
+import {isValidObjectId} from '../helpers/validators.js'
+import {verifyToken} from '../helpers/token.js';
 
 function getRoutes() {
     const routes = Router();

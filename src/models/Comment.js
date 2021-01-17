@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import {defaultSchemaToJson} from '../validators/validators.js';
+import {defaultSchemaToJson} from '../helpers/validators.js';
 
 const {model, Schema} = mongoose;
 
