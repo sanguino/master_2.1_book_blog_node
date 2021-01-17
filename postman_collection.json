@@ -55,7 +55,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.collectionVariables.set(\"token\", postman.getResponseHeader(\"Authorization\"));"
+									"pm.collectionVariables.set(\"token\", postman.getResponseHeader(\"Authorization\"));",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -110,7 +111,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://localhost:8443/rest/users/usuario",
+							"raw": "https://localhost:8443/rest/users/usuario?Authorization={{token}}",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -120,6 +121,12 @@
 								"rest",
 								"users",
 								"usuario"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "{{token}}"
+								}
 							]
 						}
 					},
@@ -140,7 +147,13 @@
 					],
 					"request": {
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"email\": \"new@email.com\"\n}",
@@ -183,7 +196,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/rest/users/usuario",
+							"raw": "https://localhost:8443/rest/users/usuario?Authorization={{token}}",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -193,6 +206,12 @@
 								"rest",
 								"users",
 								"usuario"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "{{token}}"
+								}
 							]
 						}
 					},
@@ -224,7 +243,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8443/rest/books",
+							"raw": "https://localhost:8443/rest/books?Authorization={{token}}",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -233,6 +252,12 @@
 							"path": [
 								"rest",
 								"books"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "{{token}}"
+								}
 							]
 						}
 					},
@@ -286,7 +311,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/rest/books/1",
+							"raw": "https://localhost:8443/rest/books/1?Authorization={{token}}",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -296,6 +321,12 @@
 								"rest",
 								"books",
 								"1"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "{{token}}"
+								}
 							]
 						}
 					},
@@ -333,7 +364,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://localhost:8443/rest/books/{{bookId}}",
+							"raw": "https://localhost:8443/rest/books/{{bookId}}?Authorization={{token}}",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -343,6 +374,12 @@
 								"rest",
 								"books",
 								"{{bookId}}"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "{{token}}"
+								}
 							]
 						}
 					},
@@ -374,7 +411,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8443/rest/books/1/comments",
+							"raw": "https://localhost:8443/rest/books/1/comments?Authorization={{token}}",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -385,6 +422,12 @@
 								"books",
 								"1",
 								"comments"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "{{token}}"
+								}
 							]
 						}
 					},
@@ -407,7 +450,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/rest/users/usuario/comments",
+							"raw": "https://localhost:8443/rest/users/usuario/comments?Authorization={{token}}",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -418,6 +461,12 @@
 								"users",
 								"usuario",
 								"comments"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "{{token}}"
+								}
 							]
 						}
 					},
@@ -440,7 +489,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/rest/books/1/comments/1",
+							"raw": "https://localhost:8443/rest/books/1/comments/1?Authorization={{token}}",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -452,6 +501,12 @@
 								"1",
 								"comments",
 								"1"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "{{token}}"
+								}
 							]
 						}
 					},
