@@ -5,7 +5,8 @@ const {model, Schema} = mongoose;
 
 const userSchema = new Schema({
     nick: {type: String, required: true, unique: true, index: true},
-    email: String
+    email: String,
+    password: String
 });
 
 userSchema.set('toJSON', defaultSchemaToJson);

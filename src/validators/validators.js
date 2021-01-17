@@ -18,5 +18,8 @@ export const defaultSchemaToJson = {
         if (ret._id) {
             delete ret._id;
         }
+        if (ret.password) {
+            delete ret.password;
+        }
     }
 };
