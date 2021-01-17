@@ -9,8 +9,8 @@ import userRouter from './routes/userRouter.js';
 
 const app = express();
 app.use(express.json());
-app.use('/rest', bookRouter);
-app.use('/rest', userRouter);
+app.use(bookRouter);
+app.use(userRouter);
 
 
 await dbConnect();

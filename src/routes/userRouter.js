@@ -16,10 +16,11 @@ function getRoutes() {
     if (!passwordIsValid) return res.status(401).send({auth: false, token: null});
 
     const token = createToken({id: user._id});
-    res.status(200).send({auth: true, token: token});
+    res.set('Authorization', `Bearer ${token}`);
+    res.status(200).send({auth: true});
   });
 
-  routes.post('/users', async (req, res) => {
+  routes.post('/rest/users', async (req, res) => {
     try {
       const password = bcrypt.hashSync(req.body.password, 8);
       const user = await new User({...req.body, password}).save();
@@ -29,7 +30,7 @@ function getRoutes() {
     }
   });
 
-  routes.get('/users/:nick', [verifyToken], async (req, res) => {
+  routes.get('/rest/users/:nick', [verifyToken], async (req, res) => {
     const user = await User.findOne({nick: req.params.nick}).exec();
     if (!user) {
       return res.status(404).send('Not found!');
@@ -37,7 +38,7 @@ function getRoutes() {
     return res.json(user);
   });
 
-  routes.get('/users/:nick/comments', [verifyToken], async (req, res) => {
+  routes.get('/rest/users/:nick/comments', [verifyToken], async (req, res) => {
     const user = await User.findOne({nick: req.params.nick}).exec();
     if (!user) {
       return res.status(404).send('Not found!');
@@ -46,7 +47,7 @@ function getRoutes() {
     return res.json(comments);
   });
 
-  routes.patch('/users/:nick', [verifyToken], async (req, res) => {
+  routes.patch('/rest/users/:nick', [verifyToken], async (req, res) => {
     const user = await User.findOneAndUpdate(
       {nick: req.params.nick},
       {email: req.body.email},
@@ -58,7 +59,7 @@ function getRoutes() {
     return res.json(user);
   });
 
-  routes.delete('/users/:nick', [verifyToken], async (req, res) => {
+  routes.delete('/rest/users/:nick', [verifyToken], async (req, res) => {
     const user = await User.findOne({nick: req.params.nick}).exec();
     if (!user) {
       return res.status(404).send('Not found!');
