@@ -16,5 +16,5 @@ export function verifyToken(req, res, next) {
 }
 
 export function createToken(data) {
-  jwt.sign(data, SECRET, {expiresIn: 86400});
+  return jwt.sign(data, SECRET, {expiresIn: 86400});
 }

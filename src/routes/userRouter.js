@@ -12,7 +12,6 @@ function getRoutes() {
     const user = await User.findOne({nick: req.body.nick}).exec();
     if (!user) return res.status(404).send('No user found.');
 
-    console.log(req.body.password, user.password);
     const passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
     if (!passwordIsValid) return res.status(401).send({auth: false, token: null});
 
